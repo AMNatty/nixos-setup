@@ -301,7 +301,6 @@ in
     cmake
     llvm
     lld
-    rustup
     rustc
     cargo
     rustfmt
