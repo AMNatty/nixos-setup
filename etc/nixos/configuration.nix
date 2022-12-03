@@ -304,6 +304,7 @@ in
     rustc
     cargo
     rustfmt
+    clippy
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -412,6 +413,8 @@ in
         matklad.rust-analyzer
         haskell.haskell
         justusadam.language-haskell
+        tamasfe.even-better-toml
+        serayuzgur.crates
       ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
       {
         name = "vscode-theme-onedark";
