@@ -70,7 +70,7 @@ let
       set clipboard+=unnamedplus
       set mouse=a
 
-      set guifont=CaskaydiaCove\ Nerd\ Font\ Mono:h12
+      set guifont=Cascadia\ Code:h12
       set number
       set whichwrap=<,>,[,]
       highlight LineNr ctermfg=darkgray
@@ -256,7 +256,7 @@ in
       "docker"
     ];
     packages = with pkgs; [
-      firefox
+      firefox-wayland
       thunderbird
       neofetch
       gnome.gnome-tweaks
@@ -378,7 +378,12 @@ in
       gnomeExtensions.arcmenu
       python311
       rust-analyzer
+      neovide
     ];
+
+    home.sessionVariables = {
+      MOZ_ENABLE_WAYLAND = 1;
+    };
 
     programs.vscode = {
       enable = true;
