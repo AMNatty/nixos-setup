@@ -19,11 +19,11 @@
     options = [ "rw" "uid=1000"];
   };
 
-#  fileSystems."/drives/storage" = {
-#    device = "/dev/disk/by-uuid/14FE3603FE35DDA4";
-#    fsType = "ntfs3";
-#    options = [ "rw" "uid=1000"];
-#  };
+  fileSystems."/drives/storage" = {
+    device = "/dev/disk/by-uuid/14FE3603FE35DDA4";
+    fsType = "ntfs3";
+    options = [ "rw" "uid=1000"];
+  };
 
   fileSystems."/drives/windows" = {
     device = "/dev/disk/by-uuid/72549A1E5499E4DF";

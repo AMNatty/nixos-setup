@@ -176,6 +176,7 @@ in
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "nodev";
   boot.loader.grub.efiSupport = true;
+  boot.loader.grub.useOSProber = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "natty-nixos";
@@ -330,6 +331,18 @@ in
 
     home.username = "natty";
     home.homeDirectory = "/home/natty";
+
+    xdg = {
+      enable = true;
+      userDirs = {
+        enable = true;
+        createDirectories = true;
+        documents = "/drives/personal/Documents";
+        music = "/drives/personal/Music";
+        pictures = "/drives/personal/Images";
+        videos = "/drives/storage/Videos";
+      };
+    };
 
     programs.home-manager.enable = true;
 
