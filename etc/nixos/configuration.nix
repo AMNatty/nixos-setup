@@ -415,6 +415,8 @@ in
         justusadam.language-haskell
         tamasfe.even-better-toml
         serayuzgur.crates
+        formulahendry.code-runner
+        vadimcn.vscode-lldb
       ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
       {
         name = "vscode-theme-onedark";
@@ -439,39 +441,42 @@ in
           "editor.formatOnSave" = true;
         };
         "editor.semanticTokenColorCustomizations" = {
-        "[Atom One Dark]" = {
-          enabled = true;
-          rules = {
-            parameter = "#D19A66";
-            enumMember = "#D19A66";
-            builtinType = "#E5C07B";
-            operator = "#ABB2BF";
-            lifetime = "#56B6C2";
-            variable = "#ABB2BF";
-            "variable.constant" = "#d19a66";
-            "*.mutable" = {
-              underline = true;
+          "[Atom One Dark]" = {
+            enabled = true;
+            rules = {
+              parameter = "#D19A66";
+              enumMember = "#D19A66";
+              builtinType = "#E5C07B";
+              operator = "#ABB2BF";
+              lifetime = "#56B6C2";
+              variable = "#ABB2BF";
+              "variable.constant" = "#d19a66";
+              "*.mutable" = {
+                underline = true;
+              };
+              "*.attribute" = {
+                italic = true;
+              };
+              "*.consuming" = {
+                bold = true;
+              };
+              formatSpecifier = "#00d9ff";
+              derive = "#61AFEF";
+              decorator = "#E5C07B";
+              colon = "#ABB2BF";
+              namespace = "#9197a3";
             };
-            "*.attribute" = {
-              italic = true;
-            };
-            "*.consuming" = {
-              bold = true;
-            };
-            formatSpecifier = "#00d9ff";
-            derive = "#61AFEF";
-            decorator = "#E5C07B";
-            colon = "#ABB2BF";
-            namespace = "#9197a3";
           };
         };
-      };
-      "rust-analyzer.checkOnSave.command" = "clippy";
-      "workbench.colorTheme" = "Atom One Dark";
-      "haskell.manageHLS" = "PATH";
-      "haskell.serverExecutablePath" = "/home/natty/.nix-profile/bin/haskell-language-server-wrapper";
-      "editor.inlineSuggest.enabled" = true;
+        "rust-analyzer.checkOnSave.command" = "clippy";
+        "workbench.colorTheme" = "Atom One Dark";
+        "haskell.manageHLS" = "PATH";
+        "haskell.serverExecutablePath" = "/home/natty/.nix-profile/bin/haskell-language-server-wrapper";
+        "editor.inlineSuggest.enabled" = true;
         "git.autofetch" = true;
+        "code-runner.executorMap" = {
+          "rust" = "cargo run";
+        };
       };
     };
 
@@ -496,7 +501,7 @@ in
       };
       "org/gnome/mutter" = {
         edge-tiling = true;
-	      dynamic-workspaces = true;
+          dynamic-workspaces = true;
       };
       "org/gnome/shell".enabled-extensions = with pkgs.gnomeExtensions; [
         blur-my-shell.extensionUuid
