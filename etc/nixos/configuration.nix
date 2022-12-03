@@ -477,7 +477,7 @@ in
       userName  = "Natty";
       userEmail = "natty.sh.git@gmail.com";
       signing = {
-        key = "E2477561D4C45028";
+        key = "BF6CB659ADEE60EC";
         signByDefault = true;
       };
     };
