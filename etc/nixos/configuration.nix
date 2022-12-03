@@ -51,12 +51,29 @@ let
       inoremap <silent> <C-S> <ESC><CMD>w<CR>
       " nnoremap <silent> <C-w> <CMD>BufferClose<CR>
 
-      " Map Ctrl-Backspace to delete words in insert mode.
-      nnoremap <C-BS> <C-w>
-      inoremap <C-BS> <C-O>db
+      nmap <C-BS> <CMD>db<CR>
+      imap <C-BS> <C-w>
 
       nnoremap <C-DEL> dw
       inoremap <C-DEL> <C-O>dw
+
+      nnoremap <Tab> >>
+
+      nnoremap <S-Tab> <<
+      inoremap <S-Tab> <C-d>
+
+      nmap <S-Up> v<Up>
+      nmap <S-Down> v<Down>
+      nmap <S-Left> v<Left>
+      nmap <S-Right> v<Right>
+      vmap <S-Up> <Up>
+      vmap <S-Down> <Down>
+      vmap <S-Left> <Left>
+      vmap <S-Right> <Right>
+      imap <S-Up> <Esc>v<Up>
+      imap <S-Down> <Esc>v<Down>
+      imap <S-Left> <Esc>v<Left>
+      imap <S-Right> <Esc>v<Right>
 
       set backspace=indent,eol,start
 
@@ -69,6 +86,8 @@ let
       set nowrap
       set clipboard+=unnamedplus
       set mouse=a
+      set number relativenumber
+      set nu rnu
 
       set guifont=Cascadia\ Code:h12
       set number
