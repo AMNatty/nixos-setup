@@ -255,7 +255,6 @@ in
 
   environment.gnome.excludePackages = (with pkgs; [
     gnome-tour
-    gnome-console
   ]) ++ (with pkgs.gnome; [
     cheese
     gnome-music
@@ -541,6 +540,9 @@ in
       "org/gnome/shell/extensions/dash-to-panel" = {
         trans-use-custom-bg = true;
         trans-bg-color = "#241f31";
+      };
+      "org/gnome/desktop/interface" = {
+        monospace-font-name = "TerminessTTF Nerd Font Medium 12";
       };
     };
 
