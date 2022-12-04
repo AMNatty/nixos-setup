@@ -387,6 +387,7 @@ in
       haskellPackages.cabal-install
       haskellPackages.stack
       hls942
+      jdk
       jetbrains-mono
       obsidian
       filezilla
@@ -501,8 +502,15 @@ in
       };
       "org/gnome/mutter" = {
         edge-tiling = true;
-          dynamic-workspaces = true;
+        dynamic-workspaces = true;
       };
+      "org/gnome/shell".favorite-apps = [
+        "org.gnome.Calendar.desktop"
+        "org.gnome.Nautilus.desktop"
+        "firefox.desktop"
+        "discord.desktop"
+        "thunderbird.desktop"
+      ];
       "org/gnome/shell".enabled-extensions = with pkgs.gnomeExtensions; [
         blur-my-shell.extensionUuid
         appindicator.extensionUuid
@@ -513,6 +521,14 @@ in
       "org/gtk/gtk4/settings/file-chooser" = {
         show-hidden = true;
         sort-directories-first = true;
+      };
+      "org/gnome/desktop/background" = {
+        picture-uri = "file:///drives/config/wallpaper.jpg";
+        picture-uri-dark = "file:///drives/config/wallpaper.jpg";
+      };
+      "org/gnome/shell/extensions/dash-to-panel" = {
+        trans-use-custom-bg = true;
+        trans-bg-color = "#241f31";
       };
     };
 
