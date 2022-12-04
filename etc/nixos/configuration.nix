@@ -233,7 +233,18 @@ in
   };
 
   # systemd-resolved
-  services.resolved.enable = true;
+  services.resolved = {
+    enable = true;
+    fallbackDns = [
+      "1.1.1.1"
+      "1.0.0.1"
+      "8.8.8.8"
+      "8.8.4.4"
+    ];
+    extraConfig = ''
+    DNSOverTLS=yes
+    '';
+  };
 
   # Gnome
   services.xserver.displayManager.gdm.enable = true;
@@ -244,6 +255,7 @@ in
 
   environment.gnome.excludePackages = (with pkgs; [
     gnome-tour
+    gnome-console
   ]) ++ (with pkgs.gnome; [
     cheese
     gnome-music
