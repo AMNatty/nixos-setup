@@ -387,7 +387,7 @@ in
       haskellPackages.cabal-install
       haskellPackages.stack
       hls942
-      jdk
+      temurin-bin
       jetbrains-mono
       obsidian
       filezilla
