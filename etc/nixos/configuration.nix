@@ -571,6 +571,7 @@ in
       "org/gnome/shell/extensions/arcmenu" = {
         custom-menu-button-icon = "/etc/nixos/nixos-snowflake.png";
         menu-button-icon = "Custom_Icon";
+        menu-layout = "Eleven";
       };
     };
 
