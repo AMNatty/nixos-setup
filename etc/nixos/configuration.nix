@@ -221,6 +221,19 @@ in
 
   hardware.pulseaudio.enable = false;
 
+  # AMDGPU
+  boot.initrd.kernelModules = [ "amdgpu" ];
+  services.xserver.videoDrivers = [ "amdgpu" ];
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+    extraPackages = with pkgs; [
+      rocm-opencl-icd
+      rocm-opencl-runtime
+    ];
+  };
+
   # PipeWire
   security.rtkit.enable = true;
   services.pipewire = {
@@ -407,9 +420,12 @@ in
       gnomeExtensions.places-status-indicator
       gnomeExtensions.blur-my-shell
       gnomeExtensions.arcmenu
-      python311
+      python310
+      python310Packages.pip
       rust-analyzer
       neovide
+      virtualenv
+      element-desktop
     ];
 
     home.sessionVariables = {
@@ -429,12 +445,18 @@ in
         serayuzgur.crates
         formulahendry.code-runner
         vadimcn.vscode-lldb
+        ms-python.python
       ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
       {
         name = "vscode-theme-onedark";
         publisher = "akamud";
         version = "2.3.0";
         sha256 = "f061afe0be29a136237640f067180d61a8ee126201e571759a124cc4ed87a3ce";
+      } {
+        name = "wgsl";
+        publisher = "PolyMeilex";
+        version = "0.1.14";
+        sha256 = "1491f2c3bbc220ab625210b6ab5f98b714f7a0b611c9217d5e93bf45b1ae033c";
       }];
       userSettings = {
         "editor.fontFamily" = "'Cascadia Code', 'monospace', monospace";
@@ -527,6 +549,7 @@ in
         appindicator.extensionUuid
         dash-to-panel.extensionUuid
         places-status-indicator.extensionUuid
+        arcmenu.extensionUuid
       ];
       "org/gnome/settings-daemon/plugins/power".sleep-inactive-ac-type = "nothing";
       "org/gtk/gtk4/settings/file-chooser" = {
@@ -540,9 +563,14 @@ in
       "org/gnome/shell/extensions/dash-to-panel" = {
         trans-use-custom-bg = true;
         trans-bg-color = "#241f31";
+        panel-element-positions = ''{"0":[{"element":"showAppsButton","visible":false,"position":"stackedTL"},{"element":"activitiesButton","visible":true,"position":"stackedTL"},{"element":"leftBox","visible":true,"position":"stackedTL"},{"element":"taskbar","visible":true,"position":"stackedTL"},{"element":"centerBox","visible":true,"position":"stackedBR"},{"element":"rightBox","visible":true,"position":"stackedBR"},{"element":"dateMenu","visible":true,"position":"stackedBR"},{"element":"systemMenu","visible":true,"position":"stackedBR"},{"element":"desktopButton","visible":true,"position":"stackedBR"}],"1":[{"element":"showAppsButton","visible":false,"position":"stackedTL"},{"element":"activitiesButton","visible":true,"position":"stackedTL"},{"element":"leftBox","visible":true,"position":"stackedTL"},{"element":"taskbar","visible":true,"position":"stackedTL"},{"element":"centerBox","visible":true,"position":"stackedBR"},{"element":"rightBox","visible":true,"position":"stackedBR"},{"element":"dateMenu","visible":true,"position":"stackedBR"},{"element":"systemMenu","visible":true,"position":"stackedBR"},{"element":"desktopButton","visible":true,"position":"stackedBR"}],"2":[{"element":"showAppsButton","visible":false,"position":"stackedTL"},{"element":"activitiesButton","visible":true,"position":"stackedTL"},{"element":"leftBox","visible":true,"position":"stackedTL"},{"element":"taskbar","visible":true,"position":"stackedTL"},{"element":"centerBox","visible":true,"position":"stackedBR"},{"element":"rightBox","visible":true,"position":"stackedBR"},{"element":"dateMenu","visible":true,"position":"stackedBR"},{"element":"systemMenu","visible":true,"position":"stackedBR"},{"element":"desktopButton","visible":true,"position":"stackedBR"}]}'';
       };
       "org/gnome/desktop/interface" = {
         monospace-font-name = "TerminessTTF Nerd Font Medium 12";
+      };
+      "org/gnome/shell/extensions/arcmenu" = {
+        custom-menu-button-icon = "/etc/nixos/nixos-snowflake.png";
+        menu-button-icon = "Custom_Icon";
       };
     };
 
