@@ -426,7 +426,16 @@ in
       neovide
       virtualenv
       element-desktop
+      scalafmt
+      gradle
+      gradle-completion
+      kotlin
+      kotlin-language-server
+      sbt
     ];
+
+    home.file."jdks/openjdk11".source = pkgs.openjdk11;
+    home.file."jdks/scala".source = pkgs.scala;
 
     home.sessionVariables = {
       MOZ_ENABLE_WAYLAND = 1;
@@ -446,6 +455,8 @@ in
         formulahendry.code-runner
         vadimcn.vscode-lldb
         ms-python.python
+        scalameta.metals
+        scala-lang.scala
       ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
       {
         name = "vscode-theme-onedark";
