@@ -46,6 +46,14 @@ let
       coc-sh
       coc-python
     ];
+    withPython3 = true;
+    withNodeJs = true;
+    extraPython3Packages = (p: with p; [
+      pylint
+      pep8
+      python-lsp-server
+      pip
+    ]);
     extraConfig = ''
       nnoremap <silent> <C-S> <CMD>w<CR>
       inoremap <silent> <C-S> <ESC><CMD>w<CR>
@@ -329,6 +337,7 @@ in
     cargo
     rustfmt
     clippy
+    tmux
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -422,6 +431,8 @@ in
       gnomeExtensions.arcmenu
       python310
       python310Packages.pip
+      python310Packages.pylint
+      python310Packages.pynvim
       rust-analyzer
       neovide
       virtualenv
